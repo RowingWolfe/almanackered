@@ -9,3 +9,6 @@ Uses threading to make it a little faster, don't try to push the
 thread_count too high, might get done for DDoS, I know at 10 threads I got a lot
 of failures trying to fetch the data so I settled on a nice, safe 5.
 
+Required libs in requirements.txt
+
+Currently adding SQL support, so I can export the data from JSON to mantilogs' DB.
