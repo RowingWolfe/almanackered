@@ -9,21 +9,19 @@ from os import path
 import json
 from datetime import datetime
 
-sqlite_db = {'drivername': 'sqlite', 'database': 'db.sqlite'}
+sqlite_db = {'drivername': 'sqlite', 'database': 'weather.sqlite'}
 
 engine = create_engine(URL(**sqlite_db))
 inspector = inspect(engine)
 
+
 # Create connection
 conn = engine.connect()
-# Begin transaction
-# trans = conn.begin()
 
 meta = MetaData(engine)
 
-# If the DB doesn't exist, create it.
-if not path.exists("db.sqlite"):
-    t1 = Table('weather_data', meta,
+
+t1 = Table('weather_data', meta,
                Column('id', Integer, primary_key=True),
                Column('date', DateTime),
                Column('min_temp', Float),
@@ -37,7 +35,7 @@ if not path.exists("db.sqlite"):
                Column('max_sustained_wind_speed', Float),
                Column('max_wind_gust', Float)
                )
-    t1.create()
+t1.create()
 
 print(inspector.get_columns('weather_data'))
 
@@ -46,7 +44,7 @@ print(inspector.get_columns('weather_data'))
 with open("./weather_data.json", 'r') as f:
     weather_dict = json.load(f)
 
-print(weather_dict)
+#print(weather_dict)
 
 
 def gust_check(data):
@@ -55,12 +53,33 @@ def gust_check(data):
     else:
         return 0.0
 
+def pressure_check(data):
+    if "Mean Sea Level Pressure" in data:
+        return data["Mean Sea Level Pressure"]
+    else:
+        return 0.0
+
 def insert_weather_from_dict():
     for k, v in weather_dict:
-        print(k)
         date = datetime.strptime(k, '%Y-%m-%d')
-        # need to check if v has the data required. some of the data is missing and should be defaulted
-        # to 0.0
+
+        #print(v)
+
+        #Construct the statement for the query.
+        sql_query = [
+            {'date': date},
+            {'min_temp': v["Minimum Temperature"]},
+            {'mean_temp': v["Mean Temperature"]},
+            {'max_temp': v["Maximum Temperature"]},
+            {'mean_sea_level_pressure': v["Mean Sea Level Pressure"]},
+            {'mean_dew_point': v["Mean Dew Point"]},
+            {'total_precip': v["Total Precipitation"]},
+            {'visibility': v["Visibility"]},
+            {'mean_wind_speed': v["Mean Wind Speed"]},
+            {'max_sustained_wind_speed': v["Maximum Sustained Wind Speed"]},
+            {'max_wind_gust': gust_check(v)}
+        ]
+        print(sql_query)
 
         # Insert date = k, min_temp = v["Minimum Temperature"]
         table = Table('weather_data', meta)
@@ -79,3 +98,20 @@ def insert_weather_from_dict():
         ))
 
 insert_weather_from_dict()
+
+
+
+#Broken
+# .values(
+#             date=date,
+#             min_temp=v["Minimum Temperature"],
+#             mean_temp=v["Mean Temperature"],
+#             max_temp=v["Maximum Temperature"],
+#             mean_sea_level_pressure=v["Mean Sea Level Pressure"],
+#             mean_dew_point=v["Mean Dew Point"],
+#             total_precip=v["Total Precipitation"],
+#             visibility=v["Visibility"],
+#             mean_wind_speed=v["Mean Wind Speed"],
+#             max_sustained_wind_speed=v["Maximum Sustained Wind Speed"],
+#             max_wind_gust=gust_check(v)
+#         )
