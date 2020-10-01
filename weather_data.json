@@ -2458,7 +2458,7 @@
         {
             "Minimum Temperature": "35.1",
             "Mean Temperature": "48.1",
-            "Maximum Temperature": "62.1",
+            "Maximum Temperature": "63.0",
             "Mean Sea Level Pressure": "30.35",
             "Mean Dew Point": "39.8",
             "Total Precipitation": "0.00",
@@ -2470,15 +2470,116 @@
     [
         "2020-09-16",
         {
-            "Minimum Temperature": "51.1",
-            "Mean Temperature": "53.0",
-            "Maximum Temperature": "55.0",
-            "Mean Sea Level Pressure": "30.24",
-            "Mean Dew Point": "41.3",
+            "Minimum Temperature": "35.1",
+            "Mean Temperature": "57.5",
+            "Maximum Temperature": "70.0",
+            "Mean Sea Level Pressure": "30.16",
+            "Mean Dew Point": "43.9",
             "Total Precipitation": "0.00",
             "Visibility": "10.0",
+            "Mean Wind Speed": "7.25",
+            "Maximum Sustained Wind Speed": "11.39",
+            "Maximum Wind Gust": "19.68"
+        }
+    ],
+    [
+        "2020-09-17",
+        {
+            "Minimum Temperature": "46.9",
+            "Mean Temperature": "56.6",
+            "Maximum Temperature": "70.0",
+            "Mean Sea Level Pressure": "30.07",
+            "Mean Dew Point": "52.0",
+            "Total Precipitation": "0.00",
+            "Visibility": "8.9",
             "Mean Wind Speed": "4.83",
-            "Maximum Sustained Wind Speed": "6.90"
+            "Maximum Sustained Wind Speed": "11.39"
+        }
+    ],
+    [
+        "2020-09-18",
+        {
+            "Minimum Temperature": "43.0",
+            "Mean Temperature": "50.9",
+            "Maximum Temperature": "61.0",
+            "Mean Sea Level Pressure": "30.17",
+            "Mean Dew Point": "43.7",
+            "Total Precipitation": "0.00",
+            "Visibility": "7.9",
+            "Mean Wind Speed": "6.44",
+            "Maximum Sustained Wind Speed": "14.96",
+            "Maximum Wind Gust": "21.86"
+        }
+    ],
+    [
+        "2020-09-19",
+        {
+            "Minimum Temperature": "30.0",
+            "Mean Temperature": "43.2",
+            "Maximum Temperature": "57.0",
+            "Mean Sea Level Pressure": "30.39",
+            "Mean Dew Point": "31.1",
+            "Total Precipitation": "0.00",
+            "Visibility": "10.0",
+            "Mean Wind Speed": "4.03",
+            "Maximum Sustained Wind Speed": "8.06"
+        }
+    ],
+    [
+        "2020-09-20",
+        {
+            "Minimum Temperature": "30.0",
+            "Mean Temperature": "44.4",
+            "Maximum Temperature": "59.0",
+            "Mean Sea Level Pressure": "30.53",
+            "Mean Dew Point": "29.8",
+            "Total Precipitation": "0.00",
+            "Visibility": "10.0",
+            "Mean Wind Speed": "4.26",
+            "Maximum Sustained Wind Speed": "10.24"
+        }
+    ],
+    [
+        "2020-09-21",
+        {
+            "Minimum Temperature": "30.0",
+            "Mean Temperature": "48.1",
+            "Maximum Temperature": "64.0",
+            "Mean Sea Level Pressure": "30.57",
+            "Mean Dew Point": "29.5",
+            "Total Precipitation": "0.00",
+            "Visibility": "10.0",
+            "Mean Wind Speed": "2.76",
+            "Maximum Sustained Wind Speed": "5.87"
+        }
+    ],
+    [
+        "2020-09-22",
+        {
+            "Minimum Temperature": "33.1",
+            "Mean Temperature": "50.8",
+            "Maximum Temperature": "66.9",
+            "Mean Sea Level Pressure": "30.28",
+            "Mean Dew Point": "35.0",
+            "Total Precipitation": "0.00",
+            "Visibility": "10.0",
+            "Mean Wind Speed": "4.26",
+            "Maximum Sustained Wind Speed": "11.39"
+        }
+    ],
+    [
+        "2020-09-23",
+        {
+            "Minimum Temperature": "34.0",
+            "Mean Temperature": "57.9",
+            "Maximum Temperature": "73.0",
+            "Mean Sea Level Pressure": "30.02",
+            "Mean Dew Point": "46.0",
+            "Total Precipitation": "0.00",
+            "Visibility": "10.0",
+            "Mean Wind Speed": "10.01",
+            "Maximum Sustained Wind Speed": "17.26",
+            "Maximum Wind Gust": "27.73"
         }
     ]
 ]

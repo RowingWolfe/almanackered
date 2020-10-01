@@ -1,17 +1,15 @@
-# Use SQLAlchemy to export Json to SQLite.
-
-# TODO: fix this (line 67) Thursday.
-# sqlalchemy.exc.CompileError: Unconsumed column names:
+#Export data to postgres,
 
 from sqlalchemy.engine.url import URL
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, DateTime, Float, inspect
 from os import path
 import json
 from datetime import datetime
+from decouple import config
 
-sqlite_db = {'drivername': 'sqlite', 'database': 'weather.sqlite'}
+db_string = config("PGSTRING")
 
-engine = create_engine(URL(**sqlite_db))
+engine = create_engine(db_string)
 inspector = inspect(engine)
 
 
@@ -21,7 +19,7 @@ conn = engine.connect()
 meta = MetaData(engine)
 
 
-t1 = Table('weather_data', meta,
+t1 = Table('weather_almanac', meta,
                Column('id', Integer, primary_key=True),
                Column('date', DateTime),
                Column('min_temp', Float),
@@ -35,9 +33,9 @@ t1 = Table('weather_data', meta,
                Column('max_sustained_wind_speed', Float),
                Column('max_wind_gust', Float)
                )
-t1.create()
+#t1.create()
 
-print(inspector.get_columns('weather_data'))
+print(inspector.get_columns('weather_almanac'))
 
 # Get the json from the weather_data file and convert it back to a dict.
 
@@ -82,7 +80,7 @@ def insert_weather_from_dict():
         print(sql_query)
 
         # Insert date = k, min_temp = v["Minimum Temperature"]
-        table = Table('weather_data', meta)
+        table = Table('weather_almanac', meta)
         conn.execute(table.insert().values(
             date=date,
             min_temp=v["Minimum Temperature"],
@@ -98,5 +96,3 @@ def insert_weather_from_dict():
         ))
 
 insert_weather_from_dict()
-
-

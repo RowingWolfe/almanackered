@@ -10,6 +10,8 @@ While I could just as easily slap it into a NoSQL db and call it a day, perhaps 
 into a weather_history db in mantilogs?
 '''
 
+#Todo: Maybe add retry for failed or increase wait time for timeouts.
+
 from datetime import date, timedelta
 from bs4 import BeautifulSoup
 from queue import Queue
@@ -32,17 +34,21 @@ start_day = date(2020, 4, 1)
 # Last day to collect data from.
 # NOTE: Can only collect up to 1 week before current day. Not my fault, blame the almanac.
 # Can get that information other ways though, if needed.
-end_day = date(2020, 9, 16)
+end_day = date(2020, 9, 23)
 
 # A pool of dates in a Queue, for threading.
 url_pool = Queue()
 thread_list = []
 # Threads to run. If set too high you might get done for DDoS. Be careful.
-thread_count = 5
+thread_count = 3
 
 # Store the data as a dict. (Dicts act like json for our purposes here and are easy to convert.)
 weather_data = {}
 
+print("Almanackered 0.2")
+print("If data starts failing to download, re-run a few times. "
+      "I will fix this later but it does cache what it already has."
+      "So the next run will get more and so on. Sorry about that.")
 
 def generate_url_pool(start_date, end_date):
     ''' Generate a pool of dates from start_date to end_date incremented by time_delta '''
@@ -99,7 +105,7 @@ def data_fetcher(url):
     except:
         print("No weather data here... for some reason", url)
         with open("err.log", 'a') as f:
-            f.write("Could not fetch data for: {0}".format(url))
+            f.write("Could not fetch data for: {0} \n".format(url))
 
     return day_weather_dict
 
